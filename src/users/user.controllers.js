@@ -22,6 +22,15 @@ const getOne = (req, resp) => {
     .catch((err) => resp.status(400).json({ message: err.message }));
 };
 
+const getOneMyUser = (req, resp) => {
+  const { id } = req.user;
+
+  userServices
+    .getOne(id)
+    .then((data) => resp.status(200).json(data))
+    .catch((err) => resp.status(400).json({ message: err.message }));
+};
+
 const updateUser = (req, resp) => {
   const { id } = req.params;
   const { username, password, phone, profileImage } = req.body;
@@ -91,4 +100,5 @@ module.exports = {
   updateUser,
   deleteAdmin,
   deleteUser,
+  getOneMyUser,
 };

@@ -8,6 +8,7 @@ const config = {
     host: process.env.DB_HOST,
     database: process.env.DB_DATABASE,
   },
+  secretOrKey: process.env.JWT_SECRET,
 };
 
 module.exports = config;
