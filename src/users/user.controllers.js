@@ -23,10 +23,10 @@ const getOne = (req, resp) => {
 };
 
 const getOneMyUser = (req, resp) => {
-  const { id } = req.user;
+  const userId = req.user.id;
 
   userServices
-    .getOne(id)
+    .getOne(userId)
     .then((data) => resp.status(200).json(data))
     .catch((err) => resp.status(400).json({ message: err.message }));
 };
