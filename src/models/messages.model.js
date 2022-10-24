@@ -3,14 +3,14 @@ const { dbSequelize } = require("../database");
 const Conversations = require("./conversations.model");
 const Users = require("./users.model");
 
-const Messages = dbSequelize.define("messges", {
+const Messages = dbSequelize.define("messages", {
   id: {
     type: DataTypes.UUID,
     primaryKey: true,
     allowNull: false,
     unique: true,
   },
-  messege: {
+  message: {
     type: DataTypes.TEXT,
     allowNull: false,
   },

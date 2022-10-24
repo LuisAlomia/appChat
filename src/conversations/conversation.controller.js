@@ -16,11 +16,9 @@ const getOne = (req, resp) => {
   conversationServices
     .getOne(userId, conversationId)
     .then((data) => {
-      if (data) {
-        resp.status(200).json(data);
-      } else {
-        resp.status(404).json({ message: "Invalid ID" });
-      }
+      data
+        ? resp.status(200).json(data)
+        : resp.status(404).json({ message: "Invalid ID" });
     })
     .catch((err) => resp.status(400).json({ message: err.message }));
 };
@@ -43,11 +41,9 @@ const update = (req, resp) => {
   conversationServices
     .update({ title }, userId, conversationId)
     .then((data) => {
-      if (data[0]) {
-        resp.status(200).json({ message: "Update Data" });
-      } else {
-        resp.status(404).json({ message: "Invalid ID" });
-      }
+      data[0]
+        ? resp.status(200).json({ message: "Update Data" })
+        : resp.status(404).json({ message: "Invalid ID" });
     })
     .catch((err) => resp.status(400).json({ message: err.message }));
 };

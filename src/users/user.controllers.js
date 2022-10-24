@@ -13,11 +13,9 @@ const getOne = (req, resp) => {
   userServices
     .getOne(id)
     .then((data) => {
-      if (data) {
-        resp.status(200).json(data);
-      } else {
-        resp.status(404).json({ message: "Invalid ID" });
-      }
+      data
+        ? resp.status(200).json(data)
+        : resp.status(404).json({ message: "Invalid ID" });
     })
     .catch((err) => resp.status(400).json({ message: err.message }));
 };
@@ -38,11 +36,9 @@ const updateUser = (req, resp) => {
   userServices
     .update(id, { username, password, phone, profileImage })
     .then((data) => {
-      if (data[0]) {
-        resp.status(200).json(data);
-      } else {
-        resp.status(404).json({ message: "Invalid ID" });
-      }
+      data[0]
+        ? resp.status(200).json(data)
+        : resp.status(404).json({ message: "Invalid ID" });
     })
     .catch((err) => resp.status(400).json({ message: err.message }));
 };
@@ -54,11 +50,9 @@ const updateAdmin = (req, resp) => {
   userServices
     .update(id, { role, status, isVerified })
     .then((data) => {
-      if (data[0]) {
-        resp.status(200).json(data);
-      } else {
-        resp.status(404).json({ message: "Invalid ID" });
-      }
+      data[0]
+        ? resp.status(200).json(data)
+        : resp.status(404).json({ message: "Invalid ID" });
     })
     .catch((err) => resp.status(400).json({ message: err.message }));
 };
@@ -69,11 +63,9 @@ const deleteUser = (req, resp) => {
   userServices
     .update(id, { status: "desactive" })
     .then((data) => {
-      if (data) {
-        resp.status(201);
-      } else {
-        resp.status(404).json({ message: "Invalid ID" });
-      }
+      data
+        ? resp.status(201)
+        : resp.status(404).json({ message: "Invalid ID" });
     })
     .catch((err) => resp.status(400).json({ message: err.message }));
 };
@@ -84,11 +76,9 @@ const deleteAdmin = (req, resp) => {
   userServices
     .deleteUser(id)
     .then((data) => {
-      if (data) {
-        resp.status(201);
-      } else {
-        resp.status(404).json({ message: "Invalid ID" });
-      }
+      data
+        ? resp.status(201)
+        : resp.status(404).json({ message: "Invalid ID" });
     })
     .catch((err) => resp.status(400).json({ message: err.message }));
 };
