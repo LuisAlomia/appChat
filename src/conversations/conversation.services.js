@@ -1,14 +1,33 @@
 const uuid = require("uuid");
 const Conversation = require("../models/conversations.model");
+const Users = require("../models/users.model");
 
 const getAll = async (userId) => {
-  const data = await Conversation.findAll({ where: { userId } });
+  const data = await Conversation.findAll({
+    where: { userId },
+    include: [
+      {
+        model: Users,
+        attributes: {
+          exclude: ["password"],
+        },
+      },
+    ],
+  });
   return data;
 };
 
 const getOne = async (userId, conversationId) => {
   const data = await Conversation.findOne({
     where: { userId, id: conversationId },
+    include: [
+      {
+        model: Users,
+        attributes: {
+          exclude: ["password"],
+        },
+      },
+    ],
   });
   return data;
 };
