@@ -64,7 +64,7 @@ const deleteUser = (req, resp) => {
     .update(id, { status: "desactive" })
     .then((data) => {
       data
-        ? resp.status(201)
+        ? resp.status(204).json(data)
         : resp.status(404).json({ message: "Invalid ID" });
     })
     .catch((err) => resp.status(400).json({ message: err.message }));
@@ -77,7 +77,7 @@ const deleteAdmin = (req, resp) => {
     .deleteUser(id)
     .then((data) => {
       data
-        ? resp.status(201)
+        ? resp.status(204).json(data)
         : resp.status(404).json({ message: "Invalid ID" });
     })
     .catch((err) => resp.status(400).json({ message: err.message }));

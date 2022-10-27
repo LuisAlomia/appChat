@@ -56,8 +56,8 @@ const deleteConversaion = (req, resp) => {
     .deleteConversaion(userId, conversationId)
     .then((data) => {
       data
-        ? resp.status(204)
-        : resp.status(404).json({ message: `Invalid ID` });
+        ? resp.status(204).json(data)
+        : resp.status(404).json({ message: "Invalid ID" });
     })
     .catch((err) => resp.status(400).json({ message: err.message }));
 };
